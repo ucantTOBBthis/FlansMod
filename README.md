@@ -15,3 +15,6 @@ permission from jamioflan.
 	- Linux/Mac: `./gradlew build`
 	- Windows: `gradlew.bat build`
 1. Built files are found in the directory `./build/output`
+
+****** Group Members ******
+1-Onur Albayrak
