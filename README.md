@@ -22,3 +22,4 @@ permission from jamioflan.
 3-İlker Polat<br />
 4-Enes YÜKSEKKOLAŞİN<br />
 5-Enes KARANFİL<br />
+6-Veli Durmuscan<br />
