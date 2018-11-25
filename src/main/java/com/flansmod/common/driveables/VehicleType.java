@@ -110,6 +110,7 @@ public class VehicleType extends DriveableType
 	@Override
 	public ArrayList<ItemStack> getItemsRequired(DriveablePart part, PartType engine)
 	{
+		System.out.println("enes");
 		//Get the list of items required by the driveable
 		ArrayList<ItemStack> stacks = super.getItemsRequired(part, engine);
 		//Add the propellers and engines
