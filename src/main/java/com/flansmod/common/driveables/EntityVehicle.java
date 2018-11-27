@@ -449,6 +449,23 @@ public class EntityVehicle extends EntityDriveable implements IExplodeable
 			{
 				wheel.motionY += type.buoyancy;
 			}
+
+			if(type.tank && world.containsAnyLiquid(wheel.getEntityBoundingBox())) {
+				type.canRoll = false;
+				type.fourWheelDrive = false;
+				//type.maxThrottle = 0;
+				//type.maxNegativeThrottle = 0;
+
+			}
+
+			if(type.shortName.equals("S100") && !(world.containsAnyLiquid(wheel.getEntityBoundingBox()))) {
+				System.out.println("S100 ShannelBoat");
+				System.out.println("Tank Mode: " + type.tank);
+				type.fourWheelDrive = false;
+				type.canRoll = false;
+				//type.maxThrottle = 0;
+				//type.maxNegativeThrottle = 0;
+			}
 			
 			wheel.move(MoverType.PLAYER, wheel.motionX, wheel.motionY, wheel.motionZ);
 			
