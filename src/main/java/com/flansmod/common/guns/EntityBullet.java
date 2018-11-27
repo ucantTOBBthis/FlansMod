@@ -76,6 +76,8 @@ public class EntityBullet extends EntityShootable implements IEntityAdditionalSp
 	 * The amount of damage the gun imparted upon the bullet. Multiplied by the
 	 * bullet damage to get total damage
 	 */
+
+	public static int damageModifier; //MMA
 	public float damage;
 	public boolean shotgun = false;
 	/**
@@ -100,6 +102,14 @@ public class EntityBullet extends EntityShootable implements IEntityAdditionalSp
 	@SideOnly(Side.CLIENT)
 	private boolean playedFlybySound;
 	
+  public static int get_a_DamageModifier(int hash) {//MMA
+		int firstRand = (int)(Math.random()*10);
+		damageModifier = hash%2;
+		if(firstRand%2==0)
+			return -1*damageModifier;
+		else
+			return damageModifier;
+	}
 	public EntityBullet(World world)
 	{
 		super(world);

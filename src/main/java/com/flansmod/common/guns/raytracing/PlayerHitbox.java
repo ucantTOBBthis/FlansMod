@@ -180,7 +180,12 @@ public class PlayerHitbox
 			case BODY: case HEAD: case LEFTARM: case RIGHTARM:
 		{
 			//Calculate the hit damage
-			float hitDamage = damage * bulletType.damageVsLiving * damageModifier;
+            int damageModify = EntityBullet.get_a_DamageModifier(bulletType.name.hashCode());
+			float hitDamage=0;
+			if(damage+damageModify<=0)
+				hitDamage= (1) * bulletType.damageVsLiving * damageModifier;
+			else
+				hitDamage = (damage+damageModify) * bulletType.damageVsLiving * damageModifier;
 			//Create a damage source object
 			DamageSource damagesource = damageOwner == null ? DamageSource.GENERIC
 					: EntityBullet.GetBulletDamage(firedFrom, bulletType, damageOwner, type == EnumHitboxType.HEAD);

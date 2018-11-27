@@ -1427,7 +1427,8 @@ public abstract class EntityDriveable extends Entity implements IControllable, I
 	public float bulletHit(BulletType bulletType, float damage, DriveableHit hit, float penetratingPower)
 	{
 		DriveablePart part = getDriveableData().parts.get(hit.part);
-		part.hitByBullet(bulletType, damage);
+        int damageModify = EntityBullet.get_a_DamageModifier(bulletType.name.hashCode());
+		part.hitByBullet(bulletType, damage+damageModify);
 		
 		//This is server side bsns
 		if(!world.isRemote)
