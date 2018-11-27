@@ -149,6 +149,15 @@ public class ModelBiplane extends ModelPlane
 		tailWheelModel[0].addBox(44F, 6F, -1F, 4, 4, 2, 0.0F);
 
 
+
+		hudModel = new ModelRendererTurbo[1];
+		hudModel[0] = new ModelRendererTurbo(this, 0, 0, textureX, textureY); // Box 1
+
+		hudModel[0].addShapeBox(-0.5F, -3F, -2.25F, 1, 6, 5, 0F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F); // Box 1
+		hudModel[0].setRotationPoint(-94F, -46F, 0F);
+
+
+
 		flipAll(); //Call this function to flip everything in X and Y. For correcting old models.
 	}
 }
