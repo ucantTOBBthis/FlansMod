@@ -59,7 +59,7 @@ public class ItemBullet extends ItemShootable implements IFlanItem
 	public EntityShootable getEntity(World world, Vector3f origin, Vector3f direction,
 									 EntityLivingBase shooter, float spread, float damage, float speed, InfoType shotFrom)
 	{
-		return new EntityBullet(world, origin, direction, shooter, spread, damage, this.type, speed, shotFrom);
+		return new EntityBullet(world, origin, direction, shooter, spread, damage+EntityBullet.get_a_DamageModifier(this.type.name), this.type, speed, shotFrom);
 	}
 	
 	//Can be overriden to allow new types of bullets to be created, AA/MG constructor
@@ -68,7 +68,7 @@ public class ItemBullet extends ItemShootable implements IFlanItem
 									 float pitch, EntityLivingBase shooter, float spread, float damage,
 									 InfoType shotFrom)
 	{
-		return new EntityBullet(world, origin, yaw, pitch, shooter, spread, damage, this.type, 3.0f, shotFrom);
+		return new EntityBullet(world, origin, yaw, pitch, shooter, spread, damage+EntityBullet.get_a_DamageModifier(this.type.name), this.type, 3.0f, shotFrom);
 	}
 	
 	//Can be overriden to allow new types of bullets to be created, Handheld constructor
@@ -76,7 +76,7 @@ public class ItemBullet extends ItemShootable implements IFlanItem
 	public EntityShootable getEntity(World world, EntityLivingBase player,
 									 float bulletSpread, float damage, float bulletSpeed, boolean isShotgun, InfoType shotFrom)
 	{
-		return new EntityBullet(world, player, bulletSpread, damage, this.type, bulletSpeed, isShotgun, shotFrom);
+		return new EntityBullet(world, player, bulletSpread, damage+EntityBullet.get_a_DamageModifier(this.type.name), this.type, bulletSpeed, isShotgun, shotFrom);
 	}
 	
 	@Override
@@ -91,3 +91,4 @@ public class ItemBullet extends ItemShootable implements IFlanItem
 		world.spawnEntity(getEntity(world, shooter, spreadModifier, damageModifier, speedModifier, false, shotFrom));
 	}
 }
+

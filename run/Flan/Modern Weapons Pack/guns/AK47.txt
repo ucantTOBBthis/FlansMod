@@ -3,7 +3,7 @@ ShortName ak47
 //The ammo this gun uses (shortName)
 Ammo a91Ammo
 Ammo ak47Ammo
-Ammo ak47Ammo2
+Ammo ak47Ammo2d+6
 Ammo ak74Ammo
 Ammo rpdAmmo
 Ammo rpkAmmo

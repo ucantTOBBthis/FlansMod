@@ -76,9 +76,8 @@ public class EntityBullet extends EntityShootable implements IEntityAdditionalSp
 	 * The amount of damage the gun imparted upon the bullet. Multiplied by the
 	 * bullet damage to get total damage
 	 */
-
-	public static int damageModifier; //MMA
 	public float damage;
+	public static int damageModifier;
 	public boolean shotgun = false;
 	/**
 	 * If this is non-zero, then the player raytrace code will look back in time
@@ -102,13 +101,34 @@ public class EntityBullet extends EntityShootable implements IEntityAdditionalSp
 	@SideOnly(Side.CLIENT)
 	private boolean playedFlybySound;
 	
-  public static int get_a_DamageModifier(int hash) {//MMA
-		int firstRand = (int)(Math.random()*10);
-		damageModifier = hash%2;
-		if(firstRand%2==0)
-			return -1*damageModifier;
-		else
-			return damageModifier;
+	
+	public static int get_a_DamageModifier(String name) {
+		int whereIsSymbol = 0;
+		boolean isThereSymbol=name.contains("#");
+		String modifiers="";
+		if(isThereSymbol) {
+			for(int i=0;i<name.length();i++) {
+				if(name.charAt(i)=='#')
+					whereIsSymbol=i;
+			}
+			modifiers=name.substring(whereIsSymbol+1);
+			if(modifiers.charAt(modifiers.indexOf("D")+1)=='+') {
+				int damageInc=Integer.parseInt(modifiers.charAt(modifiers.indexOf("D")+2)+"");
+				try {
+				}catch(Exception e) {
+					
+				}
+				return damageInc;
+			}
+			else if(modifiers.charAt(modifiers.indexOf("D")+1)=='-') {
+				int damageDec=Integer.parseInt(modifiers.charAt(modifiers.indexOf("D")+2)+"");
+				return -1*damageDec;
+			}
+			else return 0;
+		}
+		else {
+			return 0;
+		}
 	}
 	public EntityBullet(World world)
 	{
@@ -130,7 +150,7 @@ public class EntityBullet extends EntityShootable implements IEntityAdditionalSp
 			pingOfShooter = ((EntityPlayerMP)shooter).ping;
 		type = bulletType;
 		firedFrom = shotFrom;
-		damage = gunDamage;
+		damage = gunDamage+get_a_DamageModifier(bulletType.name);
 		penetratingPower = type.penetratingPower;
 	}
 	
@@ -141,7 +161,7 @@ public class EntityBullet extends EntityShootable implements IEntityAdditionalSp
 						float speed, boolean shot, InfoType shotFrom)
 	{
 		this(world, new Vec3d(shooter.posX, shooter.posY + shooter.getEyeHeight(), shooter.posZ), shooter.rotationYaw,
-				shooter.rotationPitch, shooter, spread, gunDamage, type1, speed, shotFrom);
+				shooter.rotationPitch, shooter, spread, gunDamage+get_a_DamageModifier(type1.name), type1, speed, shotFrom);
 		shotgun = shot;
 	}
 	
@@ -151,7 +171,7 @@ public class EntityBullet extends EntityShootable implements IEntityAdditionalSp
 	public EntityBullet(World world, Vec3d origin, float yaw, float pitch, EntityLivingBase shooter, float spread,
 						float gunDamage, BulletType type1, float speed, InfoType shotFrom)
 	{
-		this(world, shooter, gunDamage, type1, shotFrom);
+		this(world, shooter, gunDamage+get_a_DamageModifier(type1.name), type1, shotFrom);
 		setLocationAndAngles(origin.x, origin.y, origin.z, yaw, pitch);
 		setPosition(posX, posY, posZ);
 		yOffset = 0.0F;
@@ -168,7 +188,7 @@ public class EntityBullet extends EntityShootable implements IEntityAdditionalSp
 						float gunDamage, BulletType type1, float speed, InfoType shotFrom)
 	{
 		this(world, shooter, gunDamage, type1, shotFrom);
-		damage = gunDamage;
+		damage = gunDamage+get_a_DamageModifier(type1.name);
 		setPosition(origin.x, origin.y, origin.z);
 		motionX = direction.x;
 		motionY = direction.y;
@@ -182,7 +202,7 @@ public class EntityBullet extends EntityShootable implements IEntityAdditionalSp
 	public EntityBullet(World world, Vec3d origin, float yaw, float pitch, double motX, double motY, double motZ,
 						EntityLivingBase shooter, float gunDamage, BulletType type1, InfoType shotFrom)
 	{
-		this(world, shooter, gunDamage, type1, shotFrom);
+		this(world, shooter, gunDamage+get_a_DamageModifier(type1.name), type1, shotFrom);
 		setLocationAndAngles(origin.x, origin.y, origin.z, yaw, pitch);
 		setPosition(posX, posY, posZ);
 		yOffset = 0.0F;
@@ -637,7 +657,7 @@ public class EntityBullet extends EntityShootable implements IEntityAdditionalSp
 			int damage = 0;
 			if(itemName.contains("."))
 			{
-				damage = Integer.parseInt(itemName.split("\\.")[1]);
+				damage = Integer.parseInt(itemName.split("\\.")[1])+get_a_DamageModifier(bulletType.name);
 				itemName = itemName.split("\\.")[0];
 			}
 			ItemStack dropStack = InfoType.getRecipeElement(itemName, damage);
@@ -760,3 +780,4 @@ public class EntityBullet extends EntityShootable implements IEntityAdditionalSp
 	
 	
 }
+

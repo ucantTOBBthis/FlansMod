@@ -180,7 +180,7 @@ public class PlayerHitbox
 			case BODY: case HEAD: case LEFTARM: case RIGHTARM:
 		{
 			//Calculate the hit damage
-            int damageModify = EntityBullet.get_a_DamageModifier(bulletType.name.hashCode());
+			int damageModify = EntityBullet.get_a_DamageModifier(bulletType.name);
 			float hitDamage=0;
 			if(damage+damageModify<=0)
 				hitDamage= (1) * bulletType.damageVsLiving * damageModifier;
@@ -231,3 +231,4 @@ public class PlayerHitbox
 		}
 	}
 }
+

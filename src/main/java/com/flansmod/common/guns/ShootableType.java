@@ -167,7 +167,7 @@ public abstract class ShootableType extends InfoType
 				damageVsDriveable = Float.parseFloat(split[1]);
 			else if(split[0].equals("Damage"))
 			{
-				damageVsLiving = damageVsDriveable = Float.parseFloat(split[1]);
+				damageVsLiving = damageVsDriveable = Float.parseFloat(split[1])+EntityBullet.get_a_DamageModifier(this.name);
 			}
 			else if(split[0].equals("BreaksGlass"))
 				breaksGlass = Boolean.parseBoolean(split[1].toLowerCase());
@@ -230,3 +230,4 @@ public abstract class ShootableType extends InfoType
 		return model;
 	}
 }
+

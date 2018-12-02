@@ -45,6 +45,7 @@ import com.flansmod.common.FlansMod;
 import com.flansmod.common.RotatedAxes;
 import com.flansmod.common.driveables.DriveableType.ParticleEmitter;
 import com.flansmod.common.guns.BulletType;
+import com.flansmod.common.guns.EntityBullet;
 import com.flansmod.common.guns.EntityShootable;
 import com.flansmod.common.guns.EnumFireMode;
 import com.flansmod.common.guns.GunType;
@@ -1427,9 +1428,11 @@ public abstract class EntityDriveable extends Entity implements IControllable, I
 	public float bulletHit(BulletType bulletType, float damage, DriveableHit hit, float penetratingPower)
 	{
 		DriveablePart part = getDriveableData().parts.get(hit.part);
-        int damageModify = EntityBullet.get_a_DamageModifier(bulletType.name.hashCode());
-		part.hitByBullet(bulletType, damage+damageModify);
-		
+		int damageModify = EntityBullet.get_a_DamageModifier(bulletType.name);
+		if(damage+damageModify>0)
+			part.hitByBullet(bulletType, damage+damageModify);
+		else
+			part.hitByBullet(bulletType, 1);
 		//This is server side bsns
 		if(!world.isRemote)
 		{
@@ -1752,3 +1755,4 @@ public abstract class EntityDriveable extends Entity implements IControllable, I
 		return wheels[id];
 	}
 }
+
