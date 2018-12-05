@@ -50,8 +50,6 @@ public class PlayerHandler
 	@SubscribeEvent
 	public void onEntityHurt(LivingAttackEvent event)
 	{
-		Minecraft.getMinecraft().player.motionY+=10;
-		Minecraft.getMinecraft().player.motionZ+=10;
 		EntityLivingBase entity = event.getEntityLiving();
 		if(event instanceof LivingAttackEvent && (entity.getRidingEntity() instanceof EntityDriveable || entity.getRidingEntity() instanceof EntitySeat))
 		{
