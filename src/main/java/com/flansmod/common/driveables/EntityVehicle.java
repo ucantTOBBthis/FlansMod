@@ -453,6 +453,9 @@ public class EntityVehicle extends EntityDriveable implements IExplodeable
 			if(type.floatOnWater && !wheel.isOverWater()) {
 				type.maxNegativeThrottle = 0;
 				type.maxThrottle = 0;
+			}else {
+				type.maxNegativeThrottle = (float)0.45;
+				type.maxThrottle = (float)0.25;
 			}
 
 			wheel.move(MoverType.PLAYER, wheel.motionX, wheel.motionY, wheel.motionZ);
