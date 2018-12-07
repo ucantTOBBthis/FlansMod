@@ -4,6 +4,8 @@ import org.lwjgl.input.Keyboard;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.EntityViewRenderEvent.CameraSetup;
 import net.minecraftforge.client.event.MouseEvent;
@@ -21,6 +23,7 @@ import com.flansmod.client.model.InstantBulletRenderer;
 import com.flansmod.client.model.RenderFlag;
 import com.flansmod.client.model.RenderGun;
 import com.flansmod.common.FlansMod;
+import com.flansmod.common.PlayerHandler;
 import com.flansmod.common.guns.ItemGun;
 
 /**
@@ -78,6 +81,9 @@ public class ClientEventHandler
 	@SubscribeEvent
 	public void chatMessage(ClientChatReceivedEvent event)
 	{
+		/*String str = "First " + PlayerHandler.lastAnimal + " is killed";
+		ITextComponent itc = new TextComponentString(str);
+		event.setMessage(itc);*/
 		if(event.getMessage().getUnformattedText().equals("#flansmod"))
 		{
 			event.setCanceled(true);

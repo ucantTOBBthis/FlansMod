@@ -1,11 +1,14 @@
 package com.flansmod.common;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -505,7 +508,21 @@ public class FlansMod
 	
 	@SubscribeEvent
 	public void onAttackEntity(AttackEntityEvent event)
-	{
+	{	
+		//this method is only for player's attacks
+				String filename="saldiri.txt";
+				FileWriter fw=null;
+				try {
+					fw = new FileWriter(filename,true);
+					BufferedWriter bw=new BufferedWriter(fw);
+					PrintWriter out = new PrintWriter(bw);
+					out.println(event.getEntity().getName()+" "+event.getTarget().getName());
+					out.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
 		if(event.getEntity() instanceof EntityGunItem)
 		{
 			event.setCanceled(true);

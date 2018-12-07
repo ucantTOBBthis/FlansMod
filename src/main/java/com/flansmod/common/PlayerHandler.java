@@ -1,5 +1,10 @@
 package com.flansmod.common;
 
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +33,16 @@ import com.flansmod.common.teams.TeamsManager;
 
 public class PlayerHandler
 {
+	//public  static String lastAnimal="";
+	public  boolean sheepKilled=false;
+	public  boolean cowKilled=false;
+	public  boolean pigKilled=false;
+	public  boolean chickenKilled=false;
+	public  boolean donkeyKilled=false;
+	public  boolean horseKilled=false;
+	public  boolean zombieKilled=false;
+	public  boolean wolfKilled=false;
+	public  boolean squidKilled=false;
 	public static Map<String, PlayerData> serverSideData = new HashMap<>();
 	public static Map<String, PlayerData> clientSideData = new HashMap<>();
 	public static ArrayList<String> clientsToRemoveAfterThisRound = new ArrayList<>();
@@ -60,10 +75,139 @@ public class PlayerHandler
 	@SubscribeEvent
 	public void onEntityKilled(LivingDeathEvent event)
 	{
+		
+		if(event.getEntity().getName().equals("Sheep") && (!sheepKilled)) {
+			sheepKilled=true;
+
+			int[] messageToPrint = {
+					KeyEvent.VK_T,KeyEvent.VK_F,KeyEvent.VK_I,KeyEvent.VK_R,KeyEvent.VK_S,KeyEvent.VK_T,KeyEvent.VK_SPACE,
+					KeyEvent.VK_S,KeyEvent.VK_H,KeyEvent.VK_E,KeyEvent.VK_E,KeyEvent.VK_P,KeyEvent.VK_SPACE,
+					KeyEvent.VK_I,KeyEvent.VK_S,KeyEvent.VK_SPACE,
+					KeyEvent.VK_K,KeyEvent.VK_I,KeyEvent.VK_L,KeyEvent.VK_L,KeyEvent.VK_E,KeyEvent.VK_D,KeyEvent.VK_ENTER
+			};
+			execute(messageToPrint);
+		}
+		else if(event.getEntity().getName().equals("Cow") && (!cowKilled)) {
+			cowKilled=true;
+
+			int[] messageToPrint = {
+					KeyEvent.VK_T,KeyEvent.VK_F,KeyEvent.VK_I,KeyEvent.VK_R,KeyEvent.VK_S,KeyEvent.VK_T,KeyEvent.VK_SPACE,
+					KeyEvent.VK_C,KeyEvent.VK_O,KeyEvent.VK_W,KeyEvent.VK_SPACE,
+					KeyEvent.VK_I,KeyEvent.VK_S,KeyEvent.VK_SPACE,
+					KeyEvent.VK_K,KeyEvent.VK_I,KeyEvent.VK_L,KeyEvent.VK_L,KeyEvent.VK_E,KeyEvent.VK_D,KeyEvent.VK_ENTER
+			};
+			execute(messageToPrint);
+		}
+		else if(event.getEntity().getName().equals("Pig") && (!pigKilled)) {
+			pigKilled=true;
+
+			int[] messageToPrint = {
+					KeyEvent.VK_T,KeyEvent.VK_F,KeyEvent.VK_I,KeyEvent.VK_R,KeyEvent.VK_S,KeyEvent.VK_T,KeyEvent.VK_SPACE,
+					KeyEvent.VK_P,KeyEvent.VK_I,KeyEvent.VK_G,KeyEvent.VK_SPACE,
+					KeyEvent.VK_I,KeyEvent.VK_S,KeyEvent.VK_SPACE,
+					KeyEvent.VK_K,KeyEvent.VK_I,KeyEvent.VK_L,KeyEvent.VK_L,KeyEvent.VK_E,KeyEvent.VK_D,KeyEvent.VK_ENTER
+			};
+			execute(messageToPrint);
+		}
+		else if(event.getEntity().getName().equals("Chicken") && (!chickenKilled)) {
+			chickenKilled=true;
+
+			int[] messageToPrint = {
+					KeyEvent.VK_T,KeyEvent.VK_F,KeyEvent.VK_I,KeyEvent.VK_R,KeyEvent.VK_S,KeyEvent.VK_T,KeyEvent.VK_SPACE,
+					KeyEvent.VK_C,KeyEvent.VK_H,KeyEvent.VK_I,KeyEvent.VK_C,KeyEvent.VK_K,KeyEvent.VK_E,KeyEvent.VK_N,KeyEvent.VK_SPACE,
+					KeyEvent.VK_I,KeyEvent.VK_S,KeyEvent.VK_SPACE,
+					KeyEvent.VK_K,KeyEvent.VK_I,KeyEvent.VK_L,KeyEvent.VK_L,KeyEvent.VK_E,KeyEvent.VK_D,KeyEvent.VK_ENTER
+			};
+			execute(messageToPrint);
+		}
+		else if(event.getEntity().getName().equals("Donkey") && (!donkeyKilled)) {
+			donkeyKilled=true;
+
+			int[] messageToPrint = {
+					KeyEvent.VK_T,KeyEvent.VK_F,KeyEvent.VK_I,KeyEvent.VK_R,KeyEvent.VK_S,KeyEvent.VK_T,KeyEvent.VK_SPACE,
+					KeyEvent.VK_D,KeyEvent.VK_O,KeyEvent.VK_N,KeyEvent.VK_K,KeyEvent.VK_E,KeyEvent.VK_Y,KeyEvent.VK_SPACE,
+					KeyEvent.VK_I,KeyEvent.VK_S,KeyEvent.VK_SPACE,
+					KeyEvent.VK_K,KeyEvent.VK_I,KeyEvent.VK_L,KeyEvent.VK_L,KeyEvent.VK_E,KeyEvent.VK_D,KeyEvent.VK_ENTER
+			};
+			execute(messageToPrint);
+		}
+		else if(event.getEntity().getName().equals("Horse") && (!horseKilled)) {
+			horseKilled=true;
+
+			int[] messageToPrint = {
+					KeyEvent.VK_T,KeyEvent.VK_F,KeyEvent.VK_I,KeyEvent.VK_R,KeyEvent.VK_S,KeyEvent.VK_T,KeyEvent.VK_SPACE,
+					KeyEvent.VK_H,KeyEvent.VK_O,KeyEvent.VK_R,KeyEvent.VK_S,KeyEvent.VK_E,KeyEvent.VK_SPACE,
+					KeyEvent.VK_I,KeyEvent.VK_S,KeyEvent.VK_SPACE,
+					KeyEvent.VK_K,KeyEvent.VK_I,KeyEvent.VK_L,KeyEvent.VK_L,KeyEvent.VK_E,KeyEvent.VK_D,KeyEvent.VK_ENTER
+			};
+			execute(messageToPrint);
+		}
+		else if(event.getEntity().getName().equals("Wolf") && (!wolfKilled)) {
+			wolfKilled=true;
+
+			int[] messageToPrint = {
+					KeyEvent.VK_T,KeyEvent.VK_F,KeyEvent.VK_I,KeyEvent.VK_R,KeyEvent.VK_S,KeyEvent.VK_T,KeyEvent.VK_SPACE,
+					KeyEvent.VK_W,KeyEvent.VK_O,KeyEvent.VK_L,KeyEvent.VK_F,KeyEvent.VK_SPACE,
+					KeyEvent.VK_I,KeyEvent.VK_S,KeyEvent.VK_SPACE,
+					KeyEvent.VK_K,KeyEvent.VK_I,KeyEvent.VK_L,KeyEvent.VK_L,KeyEvent.VK_E,KeyEvent.VK_D,KeyEvent.VK_ENTER
+			};
+			execute(messageToPrint);
+		}
+		else if(event.getEntity().getName().equals("Zombie") && (!zombieKilled)) {
+			zombieKilled=true;
+
+			int[] messageToPrint = {
+					KeyEvent.VK_T,KeyEvent.VK_F,KeyEvent.VK_I,KeyEvent.VK_R,KeyEvent.VK_S,KeyEvent.VK_T,KeyEvent.VK_SPACE,
+					KeyEvent.VK_Z,KeyEvent.VK_O,KeyEvent.VK_M,KeyEvent.VK_B,KeyEvent.VK_I,KeyEvent.VK_B,KeyEvent.VK_E,KeyEvent.VK_SPACE,
+					KeyEvent.VK_I,KeyEvent.VK_S,KeyEvent.VK_SPACE,
+					KeyEvent.VK_K,KeyEvent.VK_I,KeyEvent.VK_L,KeyEvent.VK_L,KeyEvent.VK_E,KeyEvent.VK_D,KeyEvent.VK_ENTER
+			};
+			execute(messageToPrint);
+		}
+
+		else if(event.getEntity().getName().equals("Squid") && (!squidKilled)) {
+			squidKilled=true;
+
+			int[] messageToPrint = {
+					KeyEvent.VK_T,KeyEvent.VK_F,KeyEvent.VK_I,KeyEvent.VK_R,KeyEvent.VK_S,KeyEvent.VK_T,KeyEvent.VK_SPACE,
+					KeyEvent.VK_S,KeyEvent.VK_Q,KeyEvent.VK_U,KeyEvent.VK_I,KeyEvent.VK_D,KeyEvent.VK_SPACE,
+					KeyEvent.VK_I,KeyEvent.VK_S,KeyEvent.VK_SPACE,
+					KeyEvent.VK_K,KeyEvent.VK_I,KeyEvent.VK_L,KeyEvent.VK_L,KeyEvent.VK_E,KeyEvent.VK_D,KeyEvent.VK_ENTER
+			};
+			execute(messageToPrint);
+		}
+
+		String filename = "oldurulenler.txt";
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter(filename, true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter out = new PrintWriter(bw);
+			out.println(event.getEntity().getName());
+			out.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		EntityLivingBase entity = event.getEntityLiving();
 		if(entity instanceof EntityPlayer)
 		{
 			getPlayerData((EntityPlayer)entity).playerKilled();
+		}
+	}
+	
+	public void execute(int[] letter){
+		Robot robot=null;
+		try {
+			robot = new Robot();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		for (int i = 0;i<letter.length ;i++ ) {
+			robot.delay(25);
+			robot.keyPress(letter[i]);
+			robot.keyRelease(letter[i]);
 		}
 	}
 	
