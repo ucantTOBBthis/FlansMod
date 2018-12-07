@@ -378,13 +378,17 @@ public abstract class EntityDriveable extends Entity implements IControllable, I
 		
 		for(EntitySeat seat : seats)
 		{
-			if(seat != null)
-				seat.reallySetDead();
+			break;
+			//exit the code
 		}
 		for(EntityWheel wheel : wheels)
 		{
-			if(wheel != null)
-				wheel.reallySetDead();
+			if(wheel != null) {
+				//do nothing
+				//this methods provides from net.minecreft
+			}
+
+
 		}
 	}
 	

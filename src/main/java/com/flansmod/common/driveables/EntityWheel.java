@@ -190,7 +190,7 @@ public class EntityWheel extends Entity implements IEntityAdditionalSpawnData
 	
 	public void reallySetDead()
 	{
-		super.setDead();
+		//do nothing
 	}
 	
 	public double getSpeedXZ()

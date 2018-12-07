@@ -654,7 +654,8 @@ public class EntityVehicle extends EntityDriveable implements IExplodeable
 			vehicleStack.setTagCompound(tags);
 			driveableData.writeToNBT(tags);
 			entityDropItem(vehicleStack, 0.5F);
-			setDead();
+			
+			FlansMod.log.warn("It wont be dead...");
 		}
 		return true;
 	}

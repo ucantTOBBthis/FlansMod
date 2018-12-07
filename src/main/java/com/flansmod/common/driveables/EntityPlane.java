@@ -800,7 +800,6 @@ public class EntityPlane extends EntityDriveable
 			planeStack.setTagCompound(tags);
 			driveableData.writeToNBT(tags);
 			entityDropItem(planeStack, 0.5F);
-			setDead();
 		}
 		return true;
 	}
