@@ -101,7 +101,31 @@ public class ModelPlane extends ModelDriveable
 		renderPart(leftWingPos1Model);
 		renderPart(hudModel);
 	}
+	public void addHud(){
+		float x=this.getBodyXaverage()+this.getBodyXmin();
+		float y=this.getBodyXaverage()+this.getBodyYmin();
+
+		x=x/2-15;
+		y=y/2;
+		
+		System.out.println("**********************\n\n\n\n********************************"+x+","+y+"\n***************************");
+		hudModel = new ModelRendererTurbo[1];
+		hudModel[0] = new ModelRendererTurbo(this, 0, 0, 2048, 2048); // Box 1
+
+		hudModel[0].addShapeBox(x, y, -40F, 0, 0, 80, 0F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F); // Box 1
+		hudModel[0].setRotationPoint(x,y, 0F);
+
+	}
+	public void addHud(float xset, float yset){
 	
+		
+		hudModel = new ModelRendererTurbo[1];
+		hudModel[0] = new ModelRendererTurbo(this, 0, 0, 1024, 1024); // Box 1
+
+		hudModel[0].addShapeBox(0F, 0F, -12.5F, 0, 0, 25, 0F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F); // Box 1
+		hudModel[0].setRotationPoint(xset,yset, 0F);
+
+	}
 	public void render(float f5, EntityPlane plane, float f)
 	{
 		PlaneType type = plane.getPlaneType();

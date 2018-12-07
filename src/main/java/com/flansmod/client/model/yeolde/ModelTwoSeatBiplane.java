@@ -153,6 +153,7 @@ public class ModelTwoSeatBiplane extends ModelPlane
 		tailWheelModel[0] = new ModelRendererTurbo(this, 0, 32, textureX, textureY);
 		tailWheelModel[0].addBox(44F, 6F, -1F, 4, 4, 2, 0.0F);            //Tail Wheel
 
+		addHud();
 
 		flipAll(); //Call this function to flip everything in X and Y. For correcting old models.	
 	}

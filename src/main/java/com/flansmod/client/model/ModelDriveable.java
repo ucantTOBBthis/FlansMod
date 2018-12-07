@@ -109,4 +109,38 @@ public class ModelDriveable extends ModelBase
 	{
 		translateAll((float)x, (float)y, (float)z);
 	}
+
+	public float getBodyYaverage(){
+		float averageY=0,counter=0;
+		for (ModelRendererTurbo bodyPart: bodyModel){
+			averageY+=bodyPart.getYY();
+			counter++;
+		}
+		return averageY/counter;
+	}
+	public float getBodyXaverage(){
+		float average = 0, counter = 0;
+		for (ModelRendererTurbo bodyPart: bodyModel){
+			average+=bodyPart.getXX();
+			counter++;
+		}
+		return average/counter;
+	}
+	public float getBodyYmin(){
+		float min=0;
+		for (ModelRendererTurbo bodyPart: bodyModel){
+			if(min>bodyPart.getYY())
+				min=bodyPart.getYY();
+		}
+		return min;
+	}
+	public float getBodyXmin(){
+		float min=0;
+		for (ModelRendererTurbo bodyPart: bodyModel){
+			if(min>bodyPart.getXX())
+				min=bodyPart.getXX();
+		}
+		return min;
+	}
+
 }

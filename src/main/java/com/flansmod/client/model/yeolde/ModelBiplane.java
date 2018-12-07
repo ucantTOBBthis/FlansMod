@@ -149,7 +149,7 @@ public class ModelBiplane extends ModelPlane
 		tailWheelModel[0].addBox(44F, 6F, -1F, 4, 4, 2, 0.0F);
 
 
-
+		
 		hudModel = new ModelRendererTurbo[1];
 		hudModel[0] = new ModelRendererTurbo(this, 0, 0, textureX, textureY); // Box 1
 

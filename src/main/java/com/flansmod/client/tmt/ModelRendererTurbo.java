@@ -377,6 +377,19 @@ public class ModelRendererTurbo extends ModelRenderer
 	 * @param expansion the expansion of the box. It increases the size in each direction by that many. It's independent from the scale.
 	 * @param scale
 	 */
+	float xx=0,yy=0;
+
+	public float getXX(){
+		return this.xx;
+	}
+	public float getYY(){
+		return this.yy;
+	}
+	public void setRotationPoint(float x, float y, float z){
+		xx=x;
+		yy=y;
+		super.setRotationPoint(x, y, z);
+	}
 	public void addBox(float x, float y, float z, int w, int h, int d, float expansion, float scale)
 	{
 		float scaleX = w * scale;

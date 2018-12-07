@@ -751,6 +751,7 @@ public class ModelLittleBird extends ModelPlane //Same as Filename
 		
 		translateAll(0F, 0F, 0F);
 		
+		addHud();
 		
 		flipAll();
 	}

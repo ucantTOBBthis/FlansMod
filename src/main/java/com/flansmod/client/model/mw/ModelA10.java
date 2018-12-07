@@ -1809,13 +1809,15 @@ public class ModelA10 extends ModelPlane //Same as Filename
 		rightWingWheelModel[5].setRotationPoint(18F, -17F, 30F);
 		rightWingWheelModel[5].rotateAngleZ = -0.17453293F;
 
-
+/*
 		hudModel = new ModelRendererTurbo[1];
 		hudModel[0] = new ModelRendererTurbo(this, 0, 0, textureX, textureY); // Box 1
 
 		hudModel[0].addShapeBox(-0.5F, -3F, -2.25F, 1, 6, 5, 0F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F, 0F, -1.5F, -1F); // Box 1
 		hudModel[0].setRotationPoint(-94F, -46F, 0F);
-
+*/
+		
+		addHud();
 
 		propellerModels = new ModelRendererTurbo[2][4];
 		propellerModels[0] = makeProp1(29F, -41F, 21F);
