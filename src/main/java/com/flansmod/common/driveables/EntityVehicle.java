@@ -454,6 +454,14 @@ public class EntityVehicle extends EntityDriveable implements IExplodeable
 				type.maxNegativeThrottle = 0;
 				type.maxThrottle = 0;
 			}else {
+				type.maxNegativeThrottle = (float)0.55;
+				type.maxThrottle = (float)0.35;
+			}
+
+			if(getIsBoatOnLand()) {
+				type.maxNegativeThrottle = 0;
+				type.maxThrottle = 0;
+			}else {
 				type.maxNegativeThrottle = (float)0.45;
 				type.maxThrottle = (float)0.25;
 			}

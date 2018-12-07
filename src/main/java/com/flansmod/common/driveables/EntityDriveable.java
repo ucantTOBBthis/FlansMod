@@ -148,6 +148,8 @@ public abstract class EntityDriveable extends Entity implements IControllable, I
 	 * Until this is true, just look for seat and wheel connections
 	 */
 	protected boolean readyForUpdates = false;
+
+	private boolean isBoatOnLand = false;
 	
 	private float yOffset;
 	
@@ -790,12 +792,28 @@ public abstract class EntityDriveable extends Entity implements IControllable, I
 		return axes.getXAxis();
 	}
 	
+	public void setIsBoatOnLand(boolean b) {
+		isBoatOnLand = b;
+	}
+
+	public boolean getIsBoatOnLand() {
+		return isBoatOnLand;
+	}
+
+
 	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
 		
 		DriveableType type = getDriveableType();
+
+		for(EntityWheel wheel : wheels)
+		{
+			if(getDriveableType().floatOnWater && !wheel.isOverWater() ) {
+				setIsBoatOnLand(true);
+			}
+		}
 		
 		// Do a full check of our passengers for wheels or seats
 		for(Entity passenger : getPassengers())
