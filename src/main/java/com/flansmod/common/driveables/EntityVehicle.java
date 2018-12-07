@@ -458,14 +458,6 @@ public class EntityVehicle extends EntityDriveable implements IExplodeable
 				type.maxThrottle = (float)0.35;
 			}
 
-			if(getIsBoatOnLand()) {
-				type.maxNegativeThrottle = 0;
-				type.maxThrottle = 0;
-			}else {
-				type.maxNegativeThrottle = (float)0.45;
-				type.maxThrottle = (float)0.25;
-			}
-
 			wheel.move(MoverType.PLAYER, wheel.motionX, wheel.motionY, wheel.motionZ);
 
 			//Pull wheels towards car

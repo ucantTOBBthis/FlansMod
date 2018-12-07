@@ -807,13 +807,6 @@ public abstract class EntityDriveable extends Entity implements IControllable, I
 		super.onUpdate();
 		
 		DriveableType type = getDriveableType();
-
-		for(EntityWheel wheel : wheels)
-		{
-			if(getDriveableType().floatOnWater && !wheel.isOverWater() ) {
-				setIsBoatOnLand(true);
-			}
-		}
 		
 		// Do a full check of our passengers for wheels or seats
 		for(Entity passenger : getPassengers())
