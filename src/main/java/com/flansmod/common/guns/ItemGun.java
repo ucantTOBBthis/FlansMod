@@ -451,8 +451,19 @@ public class ItemGun extends Item implements IPaintableItem
 							Vector3f rayTraceOrigin = new Vector3f(player.getPositionEyes(0.0f));
 							Vector3f rayTraceDirection = new Vector3f(player.getLookVec());
 							
-							float spread = 0.0025f * type.getSpread(gunstack) * shootableType.bulletSpread;
-							
+							float spread;
+							if(rightMouseHeld && lastRightMouseHeld) {	// If firing unceasingly			
+								spread	= 0.0025f * type.getSpread(gunstack) * shootableType.bulletSpread;
+							}
+							else {	// Else firing the first shot after a while
+								spread = 0;
+							}
+							/*
+							Problem:
+							For example, if user break for a very short time and starts shooting again after shooting several rounds (e.g. 10), spread will be resetted.
+							This problem should be solved in another way.
+							*/
+
 							rayTraceDirection.x += (float)world.rand.nextGaussian() * spread;
 							rayTraceDirection.y += (float)world.rand.nextGaussian() * spread;
 							rayTraceDirection.z += (float)world.rand.nextGaussian() * spread;
@@ -885,6 +896,9 @@ public class ItemGun extends Item implements IPaintableItem
 				//Iterate over all inventory slots and find the magazine / bullet item with the most bullets
 				int bestSlot = -1;
 				int bulletsInBestSlot = 0;
+				//int worstSlot = -1;
+				//int bulletsInWorstSlot = bulletStack.getMaxDamage()+1;
+
 				for(int j = 0; j < inventory.getSizeInventory(); j++)
 				{
 					ItemStack item = inventory.getStackInSlot(j);
@@ -896,6 +910,13 @@ public class ItemGun extends Item implements IPaintableItem
 							bestSlot = j;
 							bulletsInBestSlot = bulletsInThisSlot;
 						}
+						/*
+						if(bulletsInThisSlot < bulletsInWorstSlot)
+						{
+							worstSlot = j;
+							bulletsInWorstSlot = bulletsInThisSlot;
+						}
+						*/
 					}
 				}
 				//If there was a valid non-empty magazine / bullet item somewhere in the inventory, load it
